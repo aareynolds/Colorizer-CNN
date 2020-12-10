@@ -1,0 +1,5 @@
+PetImages/
+.vscode/
+.ipynb_checkpoints
+Docs/
+__pycache__/
