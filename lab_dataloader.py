@@ -33,7 +33,7 @@ class LABImageFolder(datasets.ImageFolder):
             img_rgb = self.transform(img_rgb)
 
         # Reorder shape from (3, H, W) -> (H, W, 3)
-        img_rgb = np.transpose(img_rgb, axes=[1, 2, 0])
+        img_rgb = np.transpose(img_rgb, (1, 2, 0))
 
         # Convert from RGB to LAB
         img_lab = color.rgb2lab(img_rgb)
@@ -46,5 +46,8 @@ class LABImageFolder(datasets.ImageFolder):
         img_ab = torch.from_numpy(img_ab)
         # Shape (H, W) -> (H, W, 1)
         img_l = torch.from_numpy(img_l).unsqueeze(2)
+
+        img_ab = np.transpose(img_ab, (2, 0, 1))
+        img_l = np.transpose(img_l, (2, 0, 1))
 
         return img_l, img_ab, target
